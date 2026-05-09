@@ -1,0 +1,194 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.panel {
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 280px;
+}
+
+.panel h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #1e293b;
+}
+
+.panel p {
+  margin: 0;
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.search-input {
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* Enable smooth animations for layout changes */
+.react-flow__node {
+  transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s ease;
+}
+
+/* Edges animation */
+.react-flow__edge-path {
+  transition: d 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.custom-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.node-content {
+  background-color: #475569; /* Dark grey */
+  color: white;
+  padding: 12px 24px;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  min-width: 140px;
+  text-align: center;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.custom-node:hover .node-content {
+  background-color: #334155;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  cursor: pointer;
+  border-color: #94a3b8; /* Hover selection indication */
+}
+
+/* Highlighted state for search */
+.node-content.highlighted {
+  border-color: #fcd34d;
+  box-shadow: 0 0 15px rgba(252, 211, 77, 0.6);
+  animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 15px rgba(252, 211, 77, 0.4); }
+  50% { box-shadow: 0 0 25px rgba(252, 211, 77, 0.8); }
+  100% { box-shadow: 0 0 15px rgba(252, 211, 77, 0.4); }
+}
+
+.node-content.root-node {
+  background-color: #3b82f6; /* Blue for root */
+}
+
+.custom-node:hover .node-content.root-node {
+  background-color: #2563eb;
+  border-color: #93c5fd;
+}
+
+.node-label {
+  font-size: 14px;
+}
+
+.collapse-btn {
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #f59e0b; /* Yellow/orange button */
+  color: white;
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  z-index: 10;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
+  line-height: 1;
+}
+
+.collapse-btn:hover {
+  background-color: #d97706;
+  transform: translateX(-50%) scale(1.15);
+}
+
+/* Metadata Tooltip */
+.node-tooltip {
+  position: absolute;
+  bottom: 110%; /* Above the node */
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background-color: #1e293b;
+  color: #f8fafc;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: normal;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 20;
+  pointer-events: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  text-align: left;
+}
+
+.node-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #1e293b transparent transparent transparent;
+}
+
+.custom-node:hover .node-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.tooltip-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+.tooltip-row:last-child {
+  margin-bottom: 0;
+}
+.tooltip-key {
+  color: #94a3b8;
+}
+.tooltip-val {
+  font-weight: 600;
+  color: #fbbf24;
+}
